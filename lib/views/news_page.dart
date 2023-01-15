@@ -1,9 +1,12 @@
 
 
 
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:news/providers/news_provider.dart';
+import 'package:news/widgets/loading.dart';
+import 'package:news/widgets/shimmer.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class NewsPage extends StatelessWidget {
@@ -13,22 +16,22 @@ class NewsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Trending News Nepal"),
+        title: const Text("Trending News Nepal"),
       ),
       body: Consumer(
         builder: (context, ref, child){
-          final newsData = ref.watch(newsProvider("Nepal"));
+          final newsData = ref.watch(newsProvider);
           return SafeArea(
             child: Container(
               child: newsData.when(
                   data: (data){
                     return ListView.builder(
-                        physics: BouncingScrollPhysics(),
+                        physics: const BouncingScrollPhysics(),
                         itemCount: data.length,
                         itemBuilder: (context, index){
                           return Card(
                             child: ListTile(
-                              contentPadding: EdgeInsets.all(10),
+                              contentPadding: const EdgeInsets.all(10),
 
                               onTap: () async{
 
@@ -42,13 +45,22 @@ class NewsPage extends StatelessWidget {
                                 }
 
                               },
+                               leading: Container(
+                                 width: 100,
+                                 child: CachedNetworkImage(
+                                   imageUrl: data[index].urlToImage,
+                                   fit: BoxFit.cover,
+                                   placeholder: (context, url) => ImageLoad(),
+                                   errorWidget: (context, url, error) => Icon(Icons.error),
+                                 ),
+                               ),
                                 title: Container(
-                                  margin: EdgeInsets.only(bottom: 8),
+                                  margin: const EdgeInsets.only(bottom: 8),
                                     child: Text(data[index].title)),
                                 subtitle: Row(
                                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                   children: [
-                                    Text(data[index].source.name, style: TextStyle(fontWeight: FontWeight.bold),),
+                                    Expanded(child: Text(data[index].source.name, style: const TextStyle(fontWeight: FontWeight.bold), )),
                                     Text(data[index].publishedAt.substring(0, 10)),
                                   ],
                                 ),
@@ -58,7 +70,7 @@ class NewsPage extends StatelessWidget {
                     );
                   },
                   error: (err, stack) => Center(child: Text(err.toString()),),
-                  loading: () => Center(child: CircularProgressIndicator(),)
+                  loading: () =>  Loading()
               ),
 
 

@@ -9,11 +9,11 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 
 
-final newsProvider = FutureProvider.family((ref, String searchKey) => NewsProvider.getNews(searchKey: searchKey));
+final newsProvider = FutureProvider((ref) => NewsProvider.getNews());
 
 class NewsProvider  {
- static Future<List<News>> getNews ({required String searchKey}) async {
-  final data = await NewsService.getNews(searchKey: searchKey);
+ static Future<List<News>> getNews () async {
+  final data = await NewsService.getNews();
   return data;
  }
  }
