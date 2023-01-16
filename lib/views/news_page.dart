@@ -45,12 +45,12 @@ class NewsPage extends StatelessWidget {
                                 }
 
                               },
-                               leading: Container(
+                               leading: SizedBox(
                                  width: 100,
                                  child: CachedNetworkImage(
                                    imageUrl: data[index].urlToImage,
                                    fit: BoxFit.cover,
-                                   placeholder: (context, url) => ImageLoad(),
+                                   placeholder: (context, url) => ImageShimmer(),
                                    errorWidget: (context, url, error) => Icon(Icons.error),
                                  ),
                                ),
@@ -70,7 +70,7 @@ class NewsPage extends StatelessWidget {
                     );
                   },
                   error: (err, stack) => Center(child: Text(err.toString()),),
-                  loading: () =>  Loading()
+                  loading: () =>  LoadingShimmer()
               ),
 
 
