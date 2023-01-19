@@ -4,8 +4,8 @@
 import 'package:flutter/material.dart';
 import 'package:shimmer/shimmer.dart';
 
-class ImageShimmer extends StatelessWidget {
-  const ImageShimmer({Key? key}) : super(key: key);
+class ImageLoad extends StatelessWidget {
+  const ImageLoad({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

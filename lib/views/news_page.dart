@@ -1,12 +1,11 @@
 
 
-
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:news/providers/news_provider.dart';
-import 'package:news/widgets/loading.dart';
-import 'package:news/widgets/shimmer.dart';
+import 'package:news/widgets/loading/image_load.dart';
+import 'package:news/widgets/loading/news_load.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class NewsPage extends StatelessWidget {
@@ -50,7 +49,7 @@ class NewsPage extends StatelessWidget {
                                  child: CachedNetworkImage(
                                    imageUrl: data[index].urlToImage,
                                    fit: BoxFit.cover,
-                                   placeholder: (context, url) => ImageShimmer(),
+                                   placeholder: (context, url) => ImageLoad(),
                                    errorWidget: (context, url, error) => Icon(Icons.error),
                                  ),
                                ),
@@ -70,7 +69,7 @@ class NewsPage extends StatelessWidget {
                     );
                   },
                   error: (err, stack) => Center(child: Text(err.toString()),),
-                  loading: () =>  LoadingShimmer()
+                  loading: () =>  NewsLoad()
               ),
 
 

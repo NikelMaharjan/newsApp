@@ -2,7 +2,7 @@
 
 
 import 'package:dio/dio.dart';
-import 'package:news/exception.dart';
+import 'package:news/exceptions/api_exception.dart';
 import 'package:news/models/news.dart';
 
 class NewsService {

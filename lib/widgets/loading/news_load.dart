@@ -3,8 +3,8 @@
 import 'package:flutter/material.dart';
 import 'package:shimmer/shimmer.dart';
 
-class LoadingShimmer extends StatelessWidget {
-  LoadingShimmer({Key? key}) : super(key: key);
+class NewsLoad extends StatelessWidget {
+  NewsLoad({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
