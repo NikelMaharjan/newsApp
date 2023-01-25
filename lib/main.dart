@@ -9,7 +9,7 @@ import 'package:news/views/news_page.dart';
 
 void main(){
 
-  SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
+  SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
       statusBarColor: Color(0xff4870CF),
 
       statusBarBrightness: Brightness.dark,
@@ -17,7 +17,7 @@ void main(){
 
   ));
 
-  runApp(ProviderScope(child: Home()));
+  runApp(const ProviderScope(child: Home()));
 
 }
 
@@ -31,12 +31,12 @@ class Home extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
           textTheme: GoogleFonts.interTextTheme(Theme.of(context).textTheme),
-          appBarTheme: AppBarTheme(
+          appBarTheme: const AppBarTheme(
             elevation: 0,
             color: Color(0xff4870CF),
           )
       ),
-      home: NewsPage(),
+      home: const NewsPage(),
     );
   }
 }
